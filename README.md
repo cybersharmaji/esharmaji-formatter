@@ -44,60 +44,53 @@ pip install .
 
 ### 🐳 Option 2: Coming Soon – Docker Support
 
-🧪 Usage
+### 🧪 Usage
+
 esharmaji-formatter <path-to-scan.json> --type <output-format> --out <optional-output-file>
 
-## 🎯 Examples
+### 🎯 Examples
 
-# Basic CSV report from a Trivy scan
+Basic CSV report from a Trivy scan
 esharmaji-formatter trivy-results.json --type csv
 
-# Generate a PDF report from SARIF format
+Generate a PDF report from SARIF format
 esharmaji-formatter scan.sarif --type pdf --out report.pdf
 
-# Create a Markdown table from Semgrep output
+Create a Markdown table from Semgrep output
 esharmaji-formatter semgrep-output.json --type md
 
-# Generate an HTML dashboard from Detect-Secrets
+Generate an HTML dashboard from Detect-Secrets
 esharmaji-formatter secrets.json --type html --out secrets-report.html
 
 
-🖨️ Output Formats
+### 🖨️ Output Formats
 
-Option | Format | Description
---type csv | Comma-Separated Values | For spreadsheets, Excel, etc.
---type text | ASCII Table Text | Clean readable terminal-style text
---type md | Markdown Table | For GitHub/GitLab README & docs
---type pdf | PDF Report | Printable or shareable offline
---type html | Styled HTML Dashboard | Report-style view in browser
+Format | Flag | Use Case
+csv | --type csv | Excel-friendly format
+text | --type text | Terminal/ASCII table
+md | --type md | Markdown for GitHub or docs
+pdf | --type pdf | Offline report for sharing
+html | --type html | Clean, styled dashboard view
 
-🔐 Ideal For
-
+###🔐 Ideal For
 Red teamers & pentesters
-
 DevSecOps engineers
-
 Security automation pipelines
-
 CI/CD integration
-
 HackerOne/Bugcrowd triaging
 
-🧠 Author
+###🧠 Author
 Built with ❤️ by cybersharmaji/ethicalsharmaji
 
-💬 For feedback, issues, or feature requests — raise an issue
+###💬 For feedback, issues, or feature requests — raise an issue
 
-📝 License
+###📝 License
 MIT — free for use, modification, and contribution.
 
-📌 Roadmap
+###📌 Roadmap
  Upload to PyPI for pip install esharmaji-formatter
-
  Add Docker support
-
  GitHub Actions integration
-
  Plugin system for custom formatters
 
 
