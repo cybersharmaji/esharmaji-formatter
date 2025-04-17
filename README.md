@@ -52,19 +52,19 @@ esharmaji-formatter <path-to-scan.json> --type <output-format> --out <optional-o
 
 Basic CSV report from a Trivy scan:
 
-esharmaji-formatter trivy-results.json --type csv
+➡️esharmaji-formatter trivy-results.json --type csv
 
 Generate a PDF report from SARIF format:
 
-esharmaji-formatter scan.sarif --type pdf --out report.pdf
+➡️esharmaji-formatter scan.sarif --type pdf --out report.pdf
 
 Create a Markdown table from Semgrep output:
 
-esharmaji-formatter semgrep-output.json --type md
+➡️esharmaji-formatter semgrep-output.json --type md
 
 Generate an HTML dashboard from Detect-Secrets:
 
-esharmaji-formatter secrets.json --type html --out secrets-report.html
+➡️esharmaji-formatter secrets.json --type html --out secrets-report.html
 
 
 ### 🖨️ Output Formats
@@ -79,11 +79,11 @@ esharmaji-formatter secrets.json --type html --out secrets-report.html
 
 
 ### 🔐 Ideal For
-Red teamers & pentesters
-DevSecOps engineers
-Security automation pipelines
-CI/CD integration
-HackerOne/Bugcrowd triaging
+➡️Red teamers & pentesters
+➡️DevSecOps engineers
+➡️Security automation pipelines
+➡️CI/CD integration
+➡️HackerOne/Bugcrowd triaging
 
 ### 🧠 Author
 Built with ❤️ by cybersharmaji/ethicalsharmaji
@@ -94,9 +94,9 @@ Built with ❤️ by cybersharmaji/ethicalsharmaji
 MIT — free for use, modification, and contribution.
 
 ### 📌 Roadmap
- Upload to PyPI for pip install esharmaji-formatter
- Add Docker support
- GitHub Actions integration
- Plugin system for custom formatters
+ ➡️Upload to PyPI for pip install esharmaji-formatter
+ ➡️Add Docker support
+ ➡️GitHub Actions integration
+ ➡️Plugin system for custom formatters
 
 
