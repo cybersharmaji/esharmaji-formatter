@@ -1,0 +1,4 @@
+rich
+markdownify
+fpdf
+jinja2
