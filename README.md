@@ -39,7 +39,9 @@ It **automatically detects and formats security scan outputs** from open-source 
 ### 🔧 Option 1: Local Install
 
 git clone https://github.com/cybersharmaji/esharmaji-formatter.git
+
 cd esharmaji-formatter
+
 pip install .
 
 ### 🐳 Option 2: Coming Soon – Docker Support
@@ -50,21 +52,21 @@ esharmaji-formatter <path-to-scan.json> --type <output-format> --out <optional-o
 
 ### 🎯 Examples
 
-Basic CSV report from a Trivy scan:
+➡️Basic CSV report from a Trivy scan:
 
-➡️esharmaji-formatter trivy-results.json --type csv
+esharmaji-formatter trivy-results.json --type csv
 
-Generate a PDF report from SARIF format:
+➡️Generate a PDF report from SARIF format:
 
-➡️esharmaji-formatter scan.sarif --type pdf --out report.pdf
+esharmaji-formatter scan.sarif --type pdf --out report.pdf
 
-Create a Markdown table from Semgrep output:
+➡️Create a Markdown table from Semgrep output:
 
-➡️esharmaji-formatter semgrep-output.json --type md
+esharmaji-formatter semgrep-output.json --type md
 
-Generate an HTML dashboard from Detect-Secrets:
+➡️Generate an HTML dashboard from Detect-Secrets:
 
-➡️esharmaji-formatter secrets.json --type html --out secrets-report.html
+esharmaji-formatter secrets.json --type html --out secrets-report.html
 
 
 ### 🖨️ Output Formats
@@ -79,11 +81,15 @@ Generate an HTML dashboard from Detect-Secrets:
 
 
 ### 🔐 Ideal For
-➡️Red teamers & pentesters
-➡️DevSecOps engineers
-➡️Security automation pipelines
-➡️CI/CD integration
-➡️HackerOne/Bugcrowd triaging
+➡️ Red teamers & pentesters
+
+➡️ DevSecOps engineers
+
+➡️ Security automation pipelines
+
+➡️ CI/CD integration
+
+➡️ HackerOne/Bugcrowd triaging
 
 ### 🧠 Author
 Built with ❤️ by cybersharmaji/ethicalsharmaji
@@ -94,9 +100,12 @@ Built with ❤️ by cybersharmaji/ethicalsharmaji
 MIT — free for use, modification, and contribution.
 
 ### 📌 Roadmap
- ➡️Upload to PyPI for pip install esharmaji-formatter
- ➡️Add Docker support
- ➡️GitHub Actions integration
- ➡️Plugin system for custom formatters
+ ➡️ Upload to PyPI for pip install esharmaji-formatter
+ 
+ ➡️ Add Docker support
+ 
+ ➡️ GitHub Actions integration
+ 
+ ➡️ Plugin system for custom formatters
 
 
