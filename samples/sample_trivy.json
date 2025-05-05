@@ -1,48 +1,48 @@
 {
   "Results": [
     {
-      "Target": "python:3.8-slim",
+      "Target": "alpine:3.18",
       "Vulnerabilities": [
         {
-          "VulnerabilityID": "CVE-2023-1234",
+          "VulnerabilityID": "CVE-2024-1111",
           "PkgName": "openssl",
-          "InstalledVersion": "1.1.1f",
-          "FixedVersion": "1.1.1t",
+          "InstalledVersion": "1.1.1o",
+          "FixedVersion": "1.1.1u",
           "Severity": "CRITICAL",
-          "Title": "OpenSSL remote code execution vulnerability",
-          "PrimaryURL": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-1234"
+          "Title": "OpenSSL Remote Buffer Overflow",
+          "PrimaryURL": "https://security-tracker.example.com/CVE-2024-1111"
         },
         {
-          "VulnerabilityID": "CVE-2022-2345",
-          "PkgName": "libssl",
-          "InstalledVersion": "1.1.1f",
-          "FixedVersion": "1.1.1u",
+          "VulnerabilityID": "CVE-2023-2222",
+          "PkgName": "zlib",
+          "InstalledVersion": "1.2.11",
+          "FixedVersion": "1.2.12",
           "Severity": "HIGH",
-          "Title": "libssl buffer overflow vulnerability",
-          "PrimaryURL": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-2345"
+          "Title": "Zlib deflate buffer handling issue",
+          "PrimaryURL": "https://security-tracker.example.com/CVE-2023-2222"
         }
       ]
     },
     {
-      "Target": "debian:bullseye",
+      "Target": "debian:12.1",
       "Vulnerabilities": [
         {
-          "VulnerabilityID": "CVE-2021-3456",
-          "PkgName": "glibc",
-          "InstalledVersion": "2.31-13+deb11u2",
-          "FixedVersion": "2.31-13+deb11u5",
+          "VulnerabilityID": "CVE-2022-3333",
+          "PkgName": "bash",
+          "InstalledVersion": "5.0",
+          "FixedVersion": "5.1",
           "Severity": "MEDIUM",
-          "Title": "glibc environment variable handling issue",
-          "PrimaryURL": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-3456"
+          "Title": "Bash environment vulnerability",
+          "PrimaryURL": "https://security-tracker.example.com/CVE-2022-3333"
         },
         {
-          "VulnerabilityID": "CVE-2020-9999",
-          "PkgName": "bash",
-          "InstalledVersion": "5.0-4",
-          "FixedVersion": "5.0-6",
+          "VulnerabilityID": "CVE-2020-4444",
+          "PkgName": "coreutils",
+          "InstalledVersion": "8.32",
+          "FixedVersion": "8.33",
           "Severity": "LOW",
-          "Title": "Bash minor parsing bug",
-          "PrimaryURL": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-9999"
+          "Title": "Coreutils file output race condition",
+          "PrimaryURL": "https://security-tracker.example.com/CVE-2020-4444"
         }
       ]
     }

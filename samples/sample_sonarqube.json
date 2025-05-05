@@ -1,41 +1,41 @@
 {
   "issues": [
     {
-      "key": "AXD123",
+      "key": "AXSONAR001",
       "rule": "java:S106",
       "severity": "INFO",
-      "component": "src/main/java/com/app/Login.java",
-      "project": "dvwa_project",
-      "message": "Replace this use of System.out or System.err by a logger.",
-      "line": 45,
+      "component": "src/main/java/com/example/Logger.java",
+      "project": "demo-project",
+      "message": "Replace System.out.println with a proper logging framework.",
+      "line": 12,
       "type": "CODE_SMELL"
     },
     {
-      "key": "AXD124",
+      "key": "AXSONAR002",
       "rule": "java:S2095",
       "severity": "MAJOR",
-      "component": "src/main/java/com/app/Database.java",
-      "project": "dvwa_project",
-      "message": "Resources should be closed.",
-      "line": 102,
+      "component": "src/main/java/com/example/Database.java",
+      "project": "demo-project",
+      "message": "Resources like this Connection should be closed.",
+      "line": 55,
       "type": "BUG"
     },
     {
-      "key": "AXD125",
+      "key": "AXSONAR003",
       "rule": "java:S2222",
       "severity": "CRITICAL",
-      "component": "src/main/java/com/app/UserService.java",
-      "project": "dvwa_project",
-      "message": "Potential null pointer dereference.",
+      "component": "src/main/java/com/example/UserService.java",
+      "project": "demo-project",
+      "message": "Null pointer dereference possible.",
       "line": 78,
       "type": "VULNERABILITY"
     },
     {
-      "key": "AXD126",
+      "key": "AXSONAR004",
       "rule": "java:S1871",
       "severity": "MINOR",
-      "component": "src/main/java/com/app/Helper.java",
-      "project": "dvwa_project",
+      "component": "src/main/java/com/example/Helper.java",
+      "project": "demo-project",
       "message": "Redundant condition in 'if' statement.",
       "line": 30,
       "type": "CODE_SMELL"

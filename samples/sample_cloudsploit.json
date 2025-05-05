@@ -4,8 +4,8 @@
     "service": "s3",
     "region": "us-east-1",
     "severity": "CRITICAL",
-    "message": "S3 Bucket allows public READ access",
-    "description": "The S3 bucket 'example-bucket' is publicly readable. This may expose sensitive data."
+    "message": "S3 bucket allows public READ access",
+    "description": "The S3 bucket 'public-bucket-001' is publicly readable. This may expose sensitive data."
   },
   {
     "provider": "aws",
@@ -13,22 +13,22 @@
     "region": "global",
     "severity": "HIGH",
     "message": "IAM user has full administrative privileges",
-    "description": "The IAM user 'admin' has been granted AdministratorAccess policy. Consider applying least-privilege."
-  },
-  {
-    "provider": "aws",
-    "service": "ec2",
-    "region": "us-west-2",
-    "severity": "MEDIUM",
-    "message": "Security Group allows inbound SSH from 0.0.0.0/0",
-    "description": "An EC2 instance allows unrestricted SSH access, which is a potential attack vector."
+    "description": "The IAM user 'admin-sharmaji' has AdministratorAccess. Apply least-privilege."
   },
   {
     "provider": "aws",
     "service": "rds",
-    "region": "us-east-2",
-    "severity": "LOW",
+    "region": "us-west-1",
+    "severity": "MEDIUM",
     "message": "Database instance is not encrypted at rest",
-    "description": "Encryption should be enabled to protect sensitive data at rest."
+    "description": "The RDS instance 'sharma-db01' does not have encryption enabled."
+  },
+  {
+    "provider": "aws",
+    "service": "ec2",
+    "region": "eu-central-1",
+    "severity": "LOW",
+    "message": "Security Group allows SSH from 0.0.0.0/0",
+    "description": "The EC2 security group 'open-ssh' allows unrestricted SSH access from the internet."
   }
 ]
