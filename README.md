@@ -9,7 +9,7 @@ It **automatically detects and formats security scan outputs** from open-source 
 ## 🚀 Features
 
 ✅ **Auto-detects** report format  
-✅ Supports **10+ tools** out-of-the-box  
+✅ Supports **6+ tools** out-of-the-box  
 ✅ Converts JSON clutter into **beautiful readable reports**  
 ✅ Output formats: `csv`, `text`, `md`, `pdf`, `html`  
 ✅ Lightweight & terminal-native (Kali/Parrot ready)  
@@ -25,10 +25,6 @@ It **automatically detects and formats security scan outputs** from open-source 
 | Semgrep            | JSON        | SAST analysis |
 | Detect-Secrets     | JSON        | Secrets detection |
 | Gitleaks           | JSON        | Secrets in repos |
-| SARIF              | JSON        | Static Analysis Format |
-| Grype              | JSON        | SBOM & vuln scan |
-| OWASP DepCheck     | JSON        | Java/Node package vulns |
-| CycloneDX          | JSON        | SBOM components |
 | CloudSploit        | JSON        | Cloud misconfigs |
 | SonarQube          | JSON        | Code quality/vulns |
 
@@ -56,10 +52,6 @@ esharmaji-formatter <path-to-scan.json> --type <output-format> --out <optional-o
 
 esharmaji-formatter trivy-results.json --type csv
 
-➡️Generate a PDF report from SARIF format:
-
-esharmaji-formatter scan.sarif --type pdf --out report.pdf
-
 ➡️Create a Markdown table from Semgrep output:
 
 esharmaji-formatter semgrep-output.json --type md
@@ -79,6 +71,34 @@ esharmaji-formatter secrets.json --type html --out secrets-report.html
 | PDF      | --type pdf   | Shareable and printable PDF report               |
 | HTML     | --type html  | Styled, browser-based dashboard report           |
 
+## 📁 Sample Reports
+
+To help you test and understand how Esharmaji Formatter works, a set of sanitized sample scan reports are available in the [`samples/`](./samples/) directory. These files contain realistic data across various tools and are safe to use or upload.
+
+### 🔍 Included Samples:
+
+| Tool            | File Name                     | Description                                       |
+|-----------------|-------------------------------|---------------------------------------------------|
+| Trivy           | `sample_trivy.json`           | Docker/OS vulnerability scan with all severity levels |
+| Semgrep         | `sample_semgrep.json`         | Static analysis findings with ERROR, WARNING, INFO |
+| Detect-Secrets  | `sample_detect_secrets.json`  | JSON baseline file with dummy secret types        |
+| Gitleaks        | `sample_gitleaks.json`        | Hardcoded token leaks (sanitized) with commit info |
+| CloudSploit     | `sample_cloudsploit.json`     | Cloud security misconfigurations across AWS services |
+| SonarQube       | `sample_sonarqube.json`       | Code quality issues (BUG, CODE_SMELL, VULNERABILITY) |
+
+### ✅ Use Case
+
+### You can test the formatter like this:
+
+esharmaji-formatter samples/sample_trivy.json --type html
+
+esharmaji-formatter samples/sample_semgrep.json --type csv
+
+### 🔐 Detect-Secrets: Recommended Scan Command
+
+detect-secrets scan $(find . -type f) > secrets_report.json
+
+ℹ️ Note: Avoid using detect-secrets scan --all-files > file, as it prints ANSI characters and formatting not valid for JSON
 
 ### 🔐 Ideal For
 ➡️ Red teamers & pentesters
