@@ -1,0 +1,34 @@
+[
+  {
+    "provider": "aws",
+    "service": "s3",
+    "region": "us-east-1",
+    "severity": "CRITICAL",
+    "message": "S3 Bucket allows public READ access",
+    "description": "The S3 bucket 'example-bucket' is publicly readable. This may expose sensitive data."
+  },
+  {
+    "provider": "aws",
+    "service": "iam",
+    "region": "global",
+    "severity": "HIGH",
+    "message": "IAM user has full administrative privileges",
+    "description": "The IAM user 'admin' has been granted AdministratorAccess policy. Consider applying least-privilege."
+  },
+  {
+    "provider": "aws",
+    "service": "ec2",
+    "region": "us-west-2",
+    "severity": "MEDIUM",
+    "message": "Security Group allows inbound SSH from 0.0.0.0/0",
+    "description": "An EC2 instance allows unrestricted SSH access, which is a potential attack vector."
+  },
+  {
+    "provider": "aws",
+    "service": "rds",
+    "region": "us-east-2",
+    "severity": "LOW",
+    "message": "Database instance is not encrypted at rest",
+    "description": "Encryption should be enabled to protect sensitive data at rest."
+  }
+]

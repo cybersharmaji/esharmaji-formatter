@@ -1,0 +1,50 @@
+{
+  "Results": [
+    {
+      "Target": "python:3.8-slim",
+      "Vulnerabilities": [
+        {
+          "VulnerabilityID": "CVE-2023-1234",
+          "PkgName": "openssl",
+          "InstalledVersion": "1.1.1f",
+          "FixedVersion": "1.1.1t",
+          "Severity": "CRITICAL",
+          "Title": "OpenSSL remote code execution vulnerability",
+          "PrimaryURL": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-1234"
+        },
+        {
+          "VulnerabilityID": "CVE-2022-2345",
+          "PkgName": "libssl",
+          "InstalledVersion": "1.1.1f",
+          "FixedVersion": "1.1.1u",
+          "Severity": "HIGH",
+          "Title": "libssl buffer overflow vulnerability",
+          "PrimaryURL": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-2345"
+        }
+      ]
+    },
+    {
+      "Target": "debian:bullseye",
+      "Vulnerabilities": [
+        {
+          "VulnerabilityID": "CVE-2021-3456",
+          "PkgName": "glibc",
+          "InstalledVersion": "2.31-13+deb11u2",
+          "FixedVersion": "2.31-13+deb11u5",
+          "Severity": "MEDIUM",
+          "Title": "glibc environment variable handling issue",
+          "PrimaryURL": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-3456"
+        },
+        {
+          "VulnerabilityID": "CVE-2020-9999",
+          "PkgName": "bash",
+          "InstalledVersion": "5.0-4",
+          "FixedVersion": "5.0-6",
+          "Severity": "LOW",
+          "Title": "Bash minor parsing bug",
+          "PrimaryURL": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-9999"
+        }
+      ]
+    }
+  ]
+}

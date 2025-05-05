@@ -1,0 +1,44 @@
+{
+  "issues": [
+    {
+      "key": "AXD123",
+      "rule": "java:S106",
+      "severity": "INFO",
+      "component": "src/main/java/com/app/Login.java",
+      "project": "dvwa_project",
+      "message": "Replace this use of System.out or System.err by a logger.",
+      "line": 45,
+      "type": "CODE_SMELL"
+    },
+    {
+      "key": "AXD124",
+      "rule": "java:S2095",
+      "severity": "MAJOR",
+      "component": "src/main/java/com/app/Database.java",
+      "project": "dvwa_project",
+      "message": "Resources should be closed.",
+      "line": 102,
+      "type": "BUG"
+    },
+    {
+      "key": "AXD125",
+      "rule": "java:S2222",
+      "severity": "CRITICAL",
+      "component": "src/main/java/com/app/UserService.java",
+      "project": "dvwa_project",
+      "message": "Potential null pointer dereference.",
+      "line": 78,
+      "type": "VULNERABILITY"
+    },
+    {
+      "key": "AXD126",
+      "rule": "java:S1871",
+      "severity": "MINOR",
+      "component": "src/main/java/com/app/Helper.java",
+      "project": "dvwa_project",
+      "message": "Redundant condition in 'if' statement.",
+      "line": 30,
+      "type": "CODE_SMELL"
+    }
+  ]
+}

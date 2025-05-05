@@ -1,0 +1,41 @@
+[
+  {
+    "description": "Hardcoded AWS Access Key",
+    "startLine": 15,
+    "endLine": 15,
+    "match": "aws_access_key_id=AKIAIOSFODNN7EXAMPLE",
+    "secret": "AKIAIOSFODNN7EXAMPLE",
+    "file": "secrets/.aws-creds",
+    "commit": "abc123def4567890",
+    "author": "cybersharmaji",
+    "date": "2024-01-12T10:32:00Z",
+    "tags": ["key", "AWS"],
+    "rule": "aws_access_key_id"
+  },
+  {
+    "description": "Slack Token exposed in code",
+    "startLine": 22,
+    "endLine": 22,
+    "match": "slack_token=xoxb-123456789012-ABCDEFabcdef123456",
+    "secret": "xoxb-123456789012-ABCDEFabcdef123456",
+    "file": "frontend/env.js",
+    "commit": "def456abc7890123",
+    "author": "sharmaji",
+    "date": "2024-01-10T14:55:00Z",
+    "tags": ["token", "Slack"],
+    "rule": "slack_token"
+  },
+  {
+    "description": "Generic API Key in JavaScript file",
+    "startLine": 5,
+    "endLine": 5,
+    "match": "api_key=AIzaSyD_exampleKey1234",
+    "secret": "AIzaSyD_exampleKey1234",
+    "file": "public/js/app.js",
+    "commit": "xyz789ghi321",
+    "author": "developer1",
+    "date": "2024-01-05T08:45:00Z",
+    "tags": ["key", "GoogleAPI"],
+    "rule": "generic_api_key"
+  }
+]
