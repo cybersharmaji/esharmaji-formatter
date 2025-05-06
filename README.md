@@ -52,16 +52,20 @@ esharmaji-formatter <path-to-scan.json> --type <output-format> --out <optional-o
 
 ➡️Basic CSV report from a Trivy scan:
 
+```
 esharmaji-formatter trivy-results.json --type csv
+```
 
 ➡️Create a Markdown table from Semgrep output:
 
+```
 esharmaji-formatter semgrep-output.json --type md
-
+```
 ➡️Generate an HTML dashboard from Detect-Secrets:
 
+```
 esharmaji-formatter secrets.json --type html --out secrets-report.html
-
+```
 
 ### 🖨️ Output Formats
 
@@ -92,14 +96,17 @@ To help you test and understand how Esharmaji Formatter works, a set of sanitize
 
 ### You can test the formatter like this:
 
+```
 esharmaji-formatter samples/sample_trivy.json --type html
-
+```
+```
 esharmaji-formatter samples/sample_semgrep.json --type csv
-
+```
 ### 🔐 Detect-Secrets: Recommended Scan Command
 
+```
 detect-secrets scan $(find . -type f) > secrets_report.json
-
+```
 ℹ️ Note: Avoid using detect-secrets scan --all-files > file, as it prints ANSI characters and formatting not valid for JSON
 
 ### 🔐 Ideal For
@@ -129,5 +136,3 @@ MIT — free for use, modification, and contribution.
  ➡️ GitHub Actions integration
  
  ➡️ Plugin system for custom formatters
-
-
