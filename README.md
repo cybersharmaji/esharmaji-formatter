@@ -33,19 +33,21 @@ It **automatically detects and formats security scan outputs** from open-source 
 ## 🛠️ Installation
 
 ### 🔧 Option 1: Local Install
-
+```
 git clone https://github.com/cybersharmaji/esharmaji-formatter.git
-
+```
+```
 cd esharmaji-formatter
-
+```
+```
 pip install .
-
+```
 ### 🐳 Option 2: Coming Soon – Docker Support
 
 ### 🧪 Usage
-
+```
 esharmaji-formatter <path-to-scan.json> --type <output-format> --out <optional-output-file>
-
+```
 ### 🎯 Examples
 
 ➡️Basic CSV report from a Trivy scan:
