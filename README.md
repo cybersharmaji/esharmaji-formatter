@@ -40,7 +40,11 @@ git clone https://github.com/cybersharmaji/esharmaji-formatter.git
 cd esharmaji-formatter
 ```
 ```
-pip install .
+pip install . 
+```
+If you are on new version of kali-linux:
+```
+pip install . --break-system-packages
 ```
 ### 🐳 Option 2: Coming Soon – Docker Support
 
