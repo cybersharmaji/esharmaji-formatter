@@ -243,39 +243,107 @@ def write_output(output, output_type, headers, rows):
             chart_data = list(counts.values())
 
         html_template = Template("""
-        <html><head><meta charset='UTF-8'>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <style>
-        body { font-family: Arial, sans-serif; padding: 20px; }
-        h2 { color: #2c3e50; }
-        table { border-collapse: collapse; width: 100%; margin-top: 20px; }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-        th { background-color: #f4f4f4; color: #333; }
-        tr:nth-child(even) { background-color: #f9f9f9; }
-        canvas { margin-top: 30px; }
-        </style></head><body>
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Esharmaji Cyber Formatter Report</title>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+            <style>
+                body {
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    background-color: #f4f6f9;
+                    color: #333;
+                    padding: 30px;
+                }
+                h2 {
+                    color: #2c3e50;
+                    text-align: center;
+                    margin-bottom: 20px;
+                }
+                .chart-container {
+                    width: 100%;
+                    max-width: 600px;
+                    margin: auto;
+                }
+                table {
+                    border-collapse: collapse;
+                    width: 100%;
+                    background-color: #fff;
+                    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+                }
+                th, td {
+                    border: 1px solid #e0e0e0;
+                    padding: 12px;
+                    text-align: left;
+                }
+                th {
+                    background-color: #0062cc;
+                    color: white;
+                    position: sticky;
+                    top: 0;
+                    z-index: 1;
+                }
+                tr:nth-child(even) {
+                    background-color: #f9f9f9;
+                }
+                .scrollable {
+                    overflow-x: auto;
+                }
+            </style>
+        </head>
+        <body>
         <h2>Esharmaji Cyber Formatter Report</h2>
 
         {% if chart_labels %}
-        <h3>Summary Chart ({{ headers[1] }})</h3>
-        <canvas id="chart" width="400" height="200"></canvas>
+        <div class="chart-container">
+            <h3 style="text-align:center;">Summary Chart ({{ headers[1] }})</h3>
+            <canvas id="chart"></canvas>
+        </div>
         <script>
-        const ctx = document.getElementById('chart').getContext('2d');
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: {{ chart_labels | tojson }},
-                datasets: [{
-                    label: 'Count',
-                    data: {{ chart_data | tojson }},
-                    backgroundColor: ['#3498db','#2ecc71','#f39c12','#e74c3c','#8e44ad']
-                }]
-            },
-            options: {responsive: true, plugins: {legend: {display: false}}}
-        });
+            const ctx = document.getElementById('chart').getContext('2d');
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: {{ chart_labels | tojson }},
+                    datasets: [{
+                        data: {{ chart_data | tojson }},
+                        backgroundColor: [
+                            '#007bff','#6610f2','#6f42c1','#e83e8c','#dc3545',
+                            '#fd7e14','#ffc107','#28a745','#20c997','#17a2b8'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        datalabels: {
+                            formatter: (value, context) => {
+                                const total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                                return total ? `${((value / total) * 100).toFixed(1)}%` : '';
+                            },
+                            color: '#fff',
+                            font: {
+                                weight: 'bold'
+                            }
+                        },
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                usePointStyle: true,
+                                pointStyle: 'circle'
+                            }
+                        }
+                    }
+                },
+                plugins: [ChartDataLabels]
+            });
         </script>
         {% endif %}
 
+        <div class="scrollable">
         <table>
             <thead><tr>{% for h in headers %}<th>{{ h }}</th>{% endfor %}</tr></thead>
             <tbody>
@@ -284,30 +352,16 @@ def write_output(output, output_type, headers, rows):
                 {% endfor %}
             </tbody>
         </table>
-        </body></html>
+        </div>
+        </body>
+        </html>
         """)
+
         html = html_template.render(headers=headers, rows=rows, chart_labels=chart_labels, chart_data=chart_data)
         with open(output, 'w', encoding='utf-8') as htmlfile:
             htmlfile.write(html)
         console.print(f"[green]HTML saved with chart:[/green] {output}")
 
-    elif output_type == "csv":
-        with open(output, 'w', encoding='utf-8-sig', newline='') as f:
-            writer = csv.writer(f)
-            writer.writerow(headers)
-            writer.writerows(rows)
-        console.print(f"[green]CSV saved:[/green] {output}")
-
-    else:
-        table = Table(show_header=True, header_style="bold magenta", box=box.SIMPLE)
-        for h in headers:
-            table.add_column(h)
-        for row in rows:
-            table.add_row(*[str(r) for r in row])
-        with open(output, 'w') as f:
-            file_console = Console(file=f)
-            file_console.print(table)
-        console.print(f"[green]{output_type.upper()} saved:[/green] {output}")
 
 
 
