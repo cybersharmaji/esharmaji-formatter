@@ -106,6 +106,11 @@ esharmaji-formatter samples/sample_trivy.json --type html
 ```
 esharmaji-formatter samples/sample_semgrep.json --type csv
 ```
+### If you want to generate multiple reports at once:
+
+```
+esharmaji-formatter foldername --type csv
+```
 ### 🔐 Detect-Secrets: Recommended Scan Command
 
 ```
