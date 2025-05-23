@@ -290,6 +290,14 @@ def write_output(output, output_type, headers, rows):
         with open(output, 'w', encoding='utf-8') as htmlfile:
             htmlfile.write(html)
         console.print(f"[green]HTML saved with chart:[/green] {output}")
+
+    elif output_type == "csv":
+        with open(output, 'w', encoding='utf-8-sig', newline='') as f:
+            writer = csv.writer(f)
+            writer.writerow(headers)
+            writer.writerows(rows)
+        console.print(f"[green]CSV saved:[/green] {output}")
+
     else:
         table = Table(show_header=True, header_style="bold magenta", box=box.SIMPLE)
         for h in headers:
@@ -302,27 +310,39 @@ def write_output(output, output_type, headers, rows):
         console.print(f"[green]{output_type.upper()} saved:[/green] {output}")
 
 
+
 def main():
     parser = argparse.ArgumentParser(description="Esharmaji Cyber Formatter")
-    parser.add_argument("input", help="Input scan report file")
-    parser.add_argument("--out", help="Output file name")
+    parser.add_argument("input", help="Input scan report file or folder")
+    parser.add_argument("--out", help="Output file name or folder")
     parser.add_argument("--type", help="Output format", choices=["csv", "text", "md", "pdf", "html"], default="csv")
     parser.add_argument("--debug", help="Enable debug mode", action="store_true")
     args = parser.parse_args()
 
-    tool = detect_tool(args.input, debug=args.debug)
-    if not tool:
-        console.print("[red]Could not detect tool type[/red]")
-        exit(1)
-
-    output = args.out or Path(args.input).with_suffix(f".{args.type}")
-    console.print(f"[blue]Detected tool:[/blue] {tool}")
-
-    formatter = formatters.get(tool)
-    if formatter:
-        formatter(args.input, output, args.type)
+    inputs = []
+    if os.path.isdir(args.input):
+        inputs = [str(p) for p in Path(args.input).glob("*.json")]
     else:
-        console.print(f"[red]No formatter available for {tool}[/red]")
+        inputs = [args.input]
+
+    for input_path in inputs:
+        tool = detect_tool(input_path, debug=args.debug)
+        if not tool:
+            console.print(f"[red]Could not detect tool type for {input_path}[/red]")
+            continue
+
+        output_base = args.out or Path(input_path).with_suffix(f".{args.type}")
+        if os.path.isdir(args.out or ""):
+            output = Path(args.out) / Path(input_path).with_suffix(f".{args.type}").name
+        else:
+            output = output_base
+
+        console.print(f"[blue]Detected tool:[/blue] {tool} → {input_path}")
+        formatter = formatters.get(tool)
+        if formatter:
+            formatter(input_path, output, args.type)
+        else:
+            console.print(f"[red]No formatter available for {tool}[/red]")
 
 if __name__ == "__main__":
     main()
