@@ -27,7 +27,6 @@ from collections import Counter
 from rich.console import Console
 from rich.table import Table
 from rich import box
-from fpdf import FPDF
 from jinja2 import Template
 
 console = Console()
@@ -182,13 +181,14 @@ def format_gitleaks(input_file, output, output_type):
         rows.append([
             item.get("rule", ""),
             item.get("file", ""),
-            item.get("line", ""),
+            item.get("startLine", ""),  # ← this was missing earlier
             item.get("secret", ""),
             item.get("commit", ""),
             item.get("author", ""),
             item.get("date", "")
         ])
     write_output(output, output_type, headers, rows)
+
 
 def format_cloudsploit(input_file, output, output_type):
     with open(input_file) as f:
@@ -361,6 +361,63 @@ def write_output(output, output_type, headers, rows):
         with open(output, 'w', encoding='utf-8') as htmlfile:
             htmlfile.write(html)
         console.print(f"[green]HTML saved with chart:[/green] {output}")
+
+    elif output_type == "csv":
+        with open(str(output), 'w', encoding='utf-8-sig', newline='') as f:
+            writer = csv.writer(f)
+            writer.writerow(headers)
+            writer.writerows(rows)
+        console.print(f"[green]CSV saved:[/green] {output}")
+
+    elif output_type == "md":
+        with open(str(output), 'w', encoding='utf-8') as f:
+            f.write("| " + " | ".join(headers) + " |\n")
+            f.write("|" + "---|" * len(headers) + "\n")
+            for row in rows:
+                f.write("| " + " | ".join(str(r) for r in row) + " |\n")
+        console.print(f"[green]Markdown saved:[/green] {output}")
+
+    elif output_type == "pdf":
+        from reportlab.lib import colors
+        from reportlab.lib.pagesizes import A4, landscape
+        from reportlab.platypus import SimpleDocTemplate, Table as PDFTable, TableStyle, Paragraph, Spacer
+        from reportlab.lib.styles import getSampleStyleSheet
+
+        doc = SimpleDocTemplate(str(output), pagesize=landscape(A4))
+        elements = []
+
+        styles = getSampleStyleSheet()
+        title = Paragraph("<b>Esharmaji Cyber Formatter Report</b>", styles['Title'])
+        elements.append(title)
+        elements.append(Spacer(1, 12))
+
+        data = [headers] + [[str(r) if r is not None else '' for r in row] for row in rows]
+        table = PDFTable(data, repeatRows=1)
+        table.setStyle(TableStyle([
+            ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor("#007bff")),
+            ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
+            ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
+            ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+            ('FONTSIZE', (0, 0), (-1, -1), 9),
+            ('BOTTOMPADDING', (0, 0), (-1, 0), 10),
+            ('BACKGROUND', (0, 1), (-1, -1), colors.whitesmoke),
+            ('GRID', (0, 0), (-1, -1), 0.25, colors.grey),
+        ]))
+        elements.append(table)
+        doc.build(elements)
+        console.print(f"[green]PDF saved:[/green] {output}")
+
+    else:
+        table = Table(show_header=True, header_style="bold magenta", box=box.SIMPLE)
+        for h in headers:
+            table.add_column(h)
+        for row in rows:
+            table.add_row(*[str(r) for r in row])
+        with open(str(output), 'w') as f:
+            file_console = Console(file=f)
+            file_console.print(table)
+        console.print(f"[green]{output_type.upper()} saved:[/green] {output}")
+
 
 
 
